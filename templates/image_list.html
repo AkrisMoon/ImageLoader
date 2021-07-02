@@ -1,0 +1,32 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список</title>
+
+</head>
+<body>
+    <h3>Список изобажений</h3>
+    <div>
+        {% if not image_list %} <h5>Нет доступных изображений</h5> {% endif %}
+
+        {% for image in image_list %}
+            {% if image.image %}
+                <div><a href="{% url 'resize_image' image.pk %}" title="">
+                    <img src="{{ image.image.url }}" alt=""/></a>
+                </div>
+            {% endif %}
+            {% if image.url %}
+                <div><a href="{% url 'resize_image' image.pk %}" title="">
+                    <img src="{{ image.url }}" alt=""/></a>
+                </div>
+            {% endif %}
+
+        {% endfor %}
+    </div>
+    <div>
+        <a href="{% url 'new_image' %}" title="">Добавить изображение</a>
+    </div>
+</body>
+</html>

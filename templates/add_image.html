@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <a href="{% url 'image_list' %}" title="">Назад к списку</a>
+        </div>
+        <h3>Новое изображение</h3>
+        <label>Ссылка</label>
+        <div>{{ form.url }}</div>
+        <label>Файл</label>
+        <div>{{ form.image }}</div>
+        <h4> </h4>
+        <div><button type = 'submit'>Отправить</button></div>
+        {% if form.errors %}
+            <h4>Выберите один из вариантов загрузки</h4>
+        {% endif %}
+    </form>
+
+</body>
+</html>

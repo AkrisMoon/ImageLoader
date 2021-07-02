@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение размера</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <a href="{% url 'image_list' %}" title="">Назад к списку</a>
+        </div>
+        {% if image.image %}
+                <div><h3>{{ image.image.name }}</h3></div>
+        {% endif %}
+        {% if image.url %}
+                <div><h3>{{ image.url }}</h3></div>
+        {% endif %}
+        <label>Ширина</label>
+        <div>{{ form.width }}</div>
+        <label>Высота</label>
+        <div>{{ form.height }}</div>
+        {% if form.errors %}
+            <h4>Введите один или оба параметра обрезки</h4>
+        {% endif %}
+        <h4> </h4>
+        <div><button type = 'submit'>Отправить</button></div>
+        <h4> </h4>
+        {% if image.image %}
+                <div>
+                        <img src="{{ image.image.url }}" alt=""/>
+                </div>
+        {% endif %}
+        {% if image.url %}
+                <div>
+                        <img src="{{ image.url }}" alt=""/>
+                </div>
+        {% endif %}
+    </form>
+
+</body>
+</html>
